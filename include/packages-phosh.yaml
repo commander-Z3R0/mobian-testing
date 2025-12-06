@@ -38,6 +38,8 @@ actions:
       - powersupply-gtk
       - sound-theme-phosh
       - webext-ublock-origin-firefox
+      - wget
+      - curl
 
   - action: run
     description: Disable getty in the Phosh environment
