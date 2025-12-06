@@ -1,7 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $username := or .username "mobian" -}}
-{{- $password := or .password "1234" -}}
-{{- $hostname := or .hostname "mobian" -}}
+{{- $username := or .username "sirr" -}}
+{{- $password := or .password "123456" -}}
+{{- $hostname := or .hostname "pinephonepro" -}}
 {{- $debian_suite := or .debian_suite "forky" -}}
 {{- $suite := or .suite $debian_suite -}}
 {{- $environment := or .environment "phosh" -}}
@@ -41,6 +41,7 @@ actions:
       - plymouth-theme-mobian
       - squashfs-tools-ng
       - u-boot-tools
+      - wget
 
   - action: run
     description: Set up system

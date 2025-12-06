@@ -1,4 +1,4 @@
-name: Build and Release mobian-testing With Fork Mobian (Directly, without script)
+name: Build and Release SirrOS (Directly, without script)
 
 on:
 #  schedule:
@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: commander-Z3R0/mobian-testing
-          path: mobian-testing
+          repository: commander-Z3R0/Sirr-OS
+          path: Sirr-OS
 
       - name: Install dependencies (Docker, bmap-tools, qemu-user-static)
         run: |
@@ -32,17 +32,17 @@ jobs:
 
       - name: Generate tag
         id: tag
-        run: echo "tag_name=mobian-testing-$(date +%Y%m%d)" >> $GITHUB_OUTPUT
+        run: echo "tag_name=SirrOS-$(date +%Y%m%d)" >> $GITHUB_OUTPUT
 
-      - name: Build mobian-testing image for PinePhone Pro (directly)
+      - name: Build SirrOS image for PinePhone Pro (directly)
         run: |
-          cd mobian-testing
+          cd Sirr-OS
           
           # Define variables (adjust as needed)
           device="pinephonepro"
           environment="phosh"
           arch="arm64"
-          image_file="mobian-testing-${device}-${environment}"
+          image_file="SirrOS-${device}-${environment}"
           rootfs_file="rootfs-${arch}-${environment}-nonfree.tar.gz"
           installfs_file="installfs-${arch}.tar.gz"
 
@@ -95,10 +95,10 @@ jobs:
           GOFILE_TOKEN: ${{ secrets.GOFILE_TOKEN }}
           GOFILE_FOLDER_ID: ${{ secrets.GOFILE_FOLDER_ID }}
         run: |
-          cd mobian-testing
+          cd Sirr-OS
           device="pinephonepro"
           environment="phosh"
-          image_file="mobian-testing-${device}-${environment}"
+          image_file="SirrOS-${device}-${environment}"
           FILE_PATH="${image_file}.img"
 
           if [ ! -f "$FILE_PATH" ]; then

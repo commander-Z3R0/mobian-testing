@@ -1,7 +1,7 @@
 {{- $architecture := or .architecture "arm64" -}}
-{{- $username := or .username "mobian" -}}
-{{- $password := or .password "1234" -}}
-{{- $hostname := or .hostname "mobian" -}}
+{{- $username := or .username "sirr" -}}
+{{- $password := or .password "123456" -}}
+{{- $hostname := or .hostname "sirr" -}}
 {{- $environment := or .environment "phosh" -}}
 {{- $contrib := or .contrib "false" -}}
 {{- $nonfree := or .nonfree "false" -}}
@@ -93,6 +93,12 @@ actions:
     description: Set up system
     chroot: true
     script: scripts/setup-system.sh {{ $hostname }}
+
+  - action: recipe
+    recipe: include/packages-privacy.yaml
+
+  - action: recipe
+    recipe: include/packages-sirros.yaml
 
   - action: pack
     file: {{ $rootfs }}
