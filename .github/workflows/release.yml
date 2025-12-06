@@ -1,4 +1,4 @@
-name: Build and Release Sirr2 (Directly, without script)
+name: Build and Release SirrOS (Directly, without script)
 
 on:
 #  schedule:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: commander-Z3R0/mobian-testing
-          path: mobian-testing
+          path: Sirr-OS
 
       - name: Install dependencies (Docker, bmap-tools, qemu-user-static)
         run: |
@@ -32,11 +32,11 @@ jobs:
 
       - name: Generate tag
         id: tag
-        run: echo "tag_name=Sirr2-$(date +%Y%m%d)" >> $GITHUB_OUTPUT
+        run: echo "tag_name=SirrOS-mobtest-$(date +%Y%m%d)" >> $GITHUB_OUTPUT
 
       - name: Build SirrOS image for PinePhone Pro (directly)
         run: |
-          cd mobian-testing
+          cd Sirr-OS
           
           # Define variables (adjust as needed)
           device="pinephonepro"
@@ -95,7 +95,7 @@ jobs:
           GOFILE_TOKEN: ${{ secrets.GOFILE_TOKEN }}
           GOFILE_FOLDER_ID: ${{ secrets.GOFILE_FOLDER_ID }}
         run: |
-          cd mobian-testing
+          cd Sirr-OS
           device="pinephonepro"
           environment="phosh"
           image_file="SirrOS-${device}-${environment}"
